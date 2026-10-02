@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horizontal Navigation</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #333;
+      background: #fff;
+    }
+    nav {
+      background: #f1f1f1;
+      border-bottom: 1px solid #ddd;
+    }
+    nav ul {
+      display: flex;
+      max-width: 530px;
+      margin: 40px auto 0;
+      padding: 0;
+      list-style: none;
+    }
+    nav li { flex: 1; }
+    nav a {
+      display: block;
+      padding: 16px 12px;
+      color: #555;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color .2s, color .2s;
+    }
+    nav a:hover,
+    nav a:focus-visible {
+      background: #555;
+      color: #fff;
+      outline: none;
+    }
+    nav a.active {
+      background: #49b5b5;
+      color: #fff;
+    }
+    main {
+      max-width: 530px;
+      margin: 28px auto;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+    section { min-height: 180px; padding: 18px 0; scroll-margin-top: 20px; }
+    h1 { font-size: 24px; }
+    @media (max-width: 560px) {
+      nav ul { margin-top: 20px; }
+      nav a { padding: 14px 6px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Navigasi utama">
+    <ul>
+      <li><a class="active" href="#home" aria-current="page">Home</a></li>
+      <li><a href="#service">Service</a></li>
+      <li><a href="#project">Project</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="home">
+      <h1>Home</h1>
+      <p>Selamat datang! Ini contoh halaman dengan navigasi horizontal.</p>
+    </section>
+    <section id="service">
+      <h1>Service</h1>
+      <p>Bagian ini berisi informasi layanan.</p>
+    </section>
+    <section id="project">
+      <h1>Project</h1>
+      <p>Bagian ini berisi contoh proyek.</p>
+    </section>
+    <section id="about">
+      <h1>About</h1>
+      <p>Bagian ini berisi informasi tentang halaman ini.</p>
+    </section>
+  </main>
+
+  <script>
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.forEach((item) => {
+          item.classList.remove('active');
+          item.removeAttribute('aria-current');
+        });
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      });
+    });
+  </script>
+</body>
+</html>
